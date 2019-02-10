@@ -4,14 +4,17 @@
   <meta charset="utf-8">
   <meta name="description" content="Simply gyul"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="data/crate.js"></script>
+  <script type="text/javascript" src="data/logs.js"></script>
   <script type="text/javascript" src="scripts/gyul.js"></script>
   <link rel="stylesheet" type="text/css" href="styles/gyul.css"/>
   <title>귤</title>
 </head>
 <body>
   <script>
-    const gyul = new Gyul()
-    gyul.view()
+    const gyul = new Gyul(window.location.hash)
+    gyul.package()
+    console.log(gyul)
   </script>
 </body>
 </html>

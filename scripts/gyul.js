@@ -1,8 +1,16 @@
 'use strict'
+/* global CRATE:true */
 
 class Gyul {
-  view () {
-    document.body.appendChild(h1('gyul'))
+  constructor (key) {
+    this.key = key.substring(1)
+    this.tree = retrieveTree(this.key)
+  }
+  package () {
+    this.tree.body.forEach(item => {
+      const elem = Object.keys(item)[0]
+      document.body.appendChild(createElem(elem, item[elem]))
+    })
   }
 }
 
@@ -15,4 +23,4 @@ const createElem = (type, text) => {
   return el
 }
 
-const h1 = text => createElem('h1', text)
+const retrieveTree = key => CRATE[key]
