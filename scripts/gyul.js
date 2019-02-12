@@ -1,26 +1,48 @@
 'use strict'
-/* global CRATE:true */
+/* global CRATE */
 
 class Gyul {
-  constructor (key) {
-    this.key = key.substring(1)
+  constructor (page) {
+    this.key = page.substring(1)
     this.tree = retrieveTree(this.key)
+    this.template = {
+      document: {
+        header: {
+          logo: {
+            h1: '귤 (gyul)'
+          },
+          title: {
+            h2: this.tree.title
+          },
+          tabs: retrieveTabData(this.key)
+        },
+        main: {
+          image: this.tree.image ? this.tree.image : null,
+          content: {
+            tracker: 'test'
+          }
+        },
+        footer: {}
+      }
+    }
   }
   package () {
-    this.tree.body.forEach(item => {
-      const elem = Object.keys(item)[0]
-      document.body.appendChild(createElem(elem, item[elem]))
-    })
+    for (const section in this.template.document) {
+      const sectionElem = document.body.appendChild(createElem(section))
+    }
   }
 }
 
-const createElem = (type, text) => {
+const createElem = (type, text = null) => {
   const el = document.createElement(type)
-  const tn = document.createTextNode(text)
 
-  el.appendChild(tn)
+  if (text) {
+    const tn = document.createTextNode(text)
+    el.appendChild(tn)
+  }
 
   return el
 }
 
-const retrieveTree = key => CRATE[key]
+const retrieveTree = key => CRATE[key] ? CRATE[key] : CRATE.missing
+const retrieveTabData = key => {}

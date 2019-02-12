@@ -1,6 +1,6 @@
 const CRATE = {
   'home': {
-    'title': '귤',
+    'title': 'home',
     'image': '../media/gyul.jpg',
     'body': [
       { 'p': 'This is my homepage' },
@@ -8,10 +8,16 @@ const CRATE = {
     ]
   },
   'test': {
-    'title': 'test'
+    'title': 'test',
+    'body': [
+      { 'p': 'This is my test' },
+      { 'p': 'Here is another test' }
+    ]
   },
-  'body': [
-    { 'p': 'This is my homepage' },
-    { 'p': 'Here is another thing' }
-  ]
+  'missing': {
+    'title': 'Missing',
+    'body': [
+      { 'p': `I'm unaware of this entry` }
+    ]
+  }
 }
