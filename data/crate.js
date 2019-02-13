@@ -1,23 +1,45 @@
 const CRATE = {
   'home': {
     'title': 'home',
-    'image': '../media/gyul.jpg',
     'body': [
-      { 'p': 'This is my homepage' },
-      { 'p': 'Here is another thing' }
+      {
+        'type': 'img',
+        'src': '../media/gyul.jpg'
+      },
+      {
+        'type': 'p',
+        'text': 'This is my homepage'
+      },
+      {
+        'type': 'p',
+        'text': 'Here is another thing'
+      }
     ]
   },
   'test': {
     'title': 'test',
     'body': [
-      { 'p': 'This is my test' },
-      { 'p': 'Here is another test' }
+      {
+        'type': 'p',
+        'text': 'This is my test'
+      },
+      {
+        'type': 'p',
+        'text': 'Here is another test'
+      },
+      {
+        'type': 'p',
+        'text': 'Here is another test'
+      }
     ]
   },
   'missing': {
     'title': 'Missing',
     'body': [
-      { 'p': `I'm unaware of this entry` }
+      {
+        'type': 'p',
+        'text': `I'm unaware of this entry`
+      }
     ]
   }
 }

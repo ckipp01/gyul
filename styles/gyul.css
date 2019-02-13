@@ -1,5 +1,6 @@
 body {
   font-family: var(--font);
+  background-color: #E6E6E6;
 }
 
 .container {
@@ -23,8 +24,6 @@ header {
   padding: 30px;
   text-align: center;
   font-size: 1.4em;
-  background-color: #369;
-  color: white;
 }
 
 main {
@@ -33,13 +32,7 @@ main {
 }
 
 nav {
-  background-color: #f90;
   padding: 20px;
-}
-
-aside {
-  padding: 20px;
-  background-color: #936;
 }
 
 footer {
@@ -47,8 +40,6 @@ footer {
   padding: 30px;
   text-align: center;
   font-size: 1.4em;
-  background-color: #690;
-  color: white;
 }
 
 h1 {

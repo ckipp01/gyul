@@ -7,28 +7,24 @@ class Gyul {
     this.tree = retrieveTree(this.key)
     this.template = {
       document: {
-        header: {
-          logo: {
-            h1: '귤 (gyul)'
+        header: [
+          { type: 'h1',
+            text: '귤 (gyul)'
           },
-          title: {
-            h2: this.tree.title
-          },
-          tabs: retrieveTabData(this.key)
-        },
-        main: {
-          image: this.tree.image ? this.tree.image : null,
-          content: {
-            tracker: 'test'
+          { type: 'h2',
+            text: this.tree.title
           }
-        },
-        footer: {}
+        ],
+        main: this.tree.body,
+        footer: []
       }
     }
   }
   package () {
     for (const section in this.template.document) {
       const sectionElem = document.body.appendChild(createElem(section))
+      this.template.document[section]
+        .forEach(item => createAndAttatch(item, sectionElem))
     }
   }
 }
@@ -41,7 +37,22 @@ const createElem = (type, text = null) => {
     el.appendChild(tn)
   }
 
+  console.log(el)
   return el
+}
+
+const createAndAttatch = async (elemObject, sectionElem) => {
+  let elem
+  switch (elemObject.type) {
+    case 'h1':
+    case 'h2':
+    case 'p':
+      elem = await createElem(elemObject.type, elemObject.text)
+      break
+    case 'img':
+      break
+  }
+  sectionElem.appendChild(elem)
 }
 
 const retrieveTree = key => CRATE[key] ? CRATE[key] : CRATE.missing
