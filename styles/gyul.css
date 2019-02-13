@@ -15,7 +15,10 @@ body {
     display: grid;
     grid-template-columns: 200px 1fr 200px;
     grid-template-rows: auto 1fr auto;
-
+  }
+  body {
+    max-width: 800px;
+    margin: 0 auto;
   }
 }
 
@@ -46,4 +49,8 @@ h1 {
   margin-bottom: 1em;
   font-size: 1.3em;
   font-weight: bold;
+}
+
+p {
+  margin: 5px 0;
 }

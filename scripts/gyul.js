@@ -3,7 +3,9 @@
 
 class Gyul {
   constructor (page) {
-    this.key = page.substring(1)
+    page
+      ? this.key = page.substring(1)
+      : this.key = 'home'
     this.tree = retrieveTree(this.key)
     this.template = {
       document: {
@@ -22,22 +24,27 @@ class Gyul {
   }
   package () {
     for (const section in this.template.document) {
-      const sectionElem = document.body.appendChild(createElem(section))
+      const sectionElem =
+        document.body.appendChild(createElem({ 'type': section }))
       this.template.document[section]
         .forEach(item => createAndAttatch(item, sectionElem))
     }
   }
 }
 
-const createElem = (type, text = null) => {
-  const el = document.createElement(type)
+const createElem = elemObject => {
+  const el = document.createElement(elemObject.type)
 
-  if (text) {
-    const tn = document.createTextNode(text)
+  if (elemObject.text) {
+    const tn = document.createTextNode(elemObject.text)
     el.appendChild(tn)
   }
 
-  console.log(el)
+  if (elemObject.attributes) {
+    elemObject.attributes
+      .map(attribute => el.setAttribute(attribute.type, attribute.value))
+  }
+
   return el
 }
 
@@ -47,9 +54,10 @@ const createAndAttatch = async (elemObject, sectionElem) => {
     case 'h1':
     case 'h2':
     case 'p':
-      elem = await createElem(elemObject.type, elemObject.text)
+      elem = await createElem({ 'type': elemObject.type, 'text': elemObject.text })
       break
     case 'img':
+      elem = await createElem({ 'type': elemObject.type, 'attributes': elemObject.attributes })
       break
   }
   sectionElem.appendChild(elem)
