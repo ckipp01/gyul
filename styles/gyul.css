@@ -60,3 +60,12 @@ img {
   margin: auto;
   max-width: 100%;
 }
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+.tabs {
+  margin: 5px;
+}

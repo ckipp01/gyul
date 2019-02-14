@@ -13,11 +13,50 @@ class Gyul {
           { type: 'h1', text: '귤 (gyul)' },
           { type: 'h2', text: this.tree.title },
           { type: 'div',
+            attributes: [
+              {
+                type: 'class',
+                value: 'flex-center'
+              }
+            ],
             children: [
-              { type: 'p', text: 'info' },
-              { type: 'p', text: 'stats' },
-              { type: 'p', text: 'logs' },
-              { type: 'p', text: 'tags' }
+              { type: 'p',
+                text: 'info',
+                attributes: [
+                  {
+                    type: 'class',
+                    value: 'tabs'
+                  }
+                ]
+              },
+              { type: 'p',
+                text: 'stats',
+                attributes: [
+                  {
+                    type: 'class',
+                    value: 'tabs'
+                  }
+                ]
+              },
+              { type: 'p',
+                text: 'logs',
+                attributes: [
+                  {
+                    type: 'class',
+                    value: 'tabs'
+                  }
+                ]
+              },
+              { type: 'p',
+                text: 'tags',
+                attributes: [
+                  {
+                    type: 'class',
+                    value: 'tabs'
+                  }
+                ]
+
+              }
             ]
           }
         ],
@@ -49,6 +88,13 @@ const createElem = elemObject => {
       .map(attribute => el.setAttribute(attribute.type, attribute.value))
   }
 
+  if (elemObject.children) {
+    elemObject.children
+      .map(child => {
+        createAndAttatch(child, el)
+      })
+  }
+
   return el
 }
 
@@ -58,13 +104,15 @@ const createAndAttatch = async (elemObject, sectionElem) => {
     case 'h1':
     case 'h2':
     case 'p':
-      elem = await createElem({ 'type': elemObject.type, 'text': elemObject.text })
-      break
     case 'img':
-      elem = await createElem({ 'type': elemObject.type, 'attributes': elemObject.attributes })
+      elem = await createElem(
+        { type: elemObject.type, text: elemObject.text, attributes: elemObject.attributes }
+      )
       break
     case 'div':
-      elem = await createElem({ 'type': elemObject.type })
+      elem = await createElem(
+        { type: elemObject.type, text: elemObject.text, children: elemObject.children, attributes: elemObject.attributes }
+      )
       break
   }
   sectionElem.appendChild(elem)
