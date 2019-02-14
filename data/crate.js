@@ -7,7 +7,7 @@ const CRATE = {
         'attributes': [
           {
             'type': 'src',
-            'value': 'media/gyul.jpg'
+            'value': 'media/gyul.png'
           },
           {
             'type': 'class',
@@ -17,11 +17,11 @@ const CRATE = {
       },
       {
         'type': 'p',
-        'text': 'This is my homepage'
+        'text': 'Gyul is an attempt to make an extremely small micro framework like library that will allow me to display info, logs, and graphs.'
       },
       {
         'type': 'p',
-        'text': 'Here is another thing'
+        'text': 'For a while I found myself reverting to large frameworks for simple tasks just because I knew the technology. There came a point where I realized the amount of overhead they brought for such simple tasks was nonsense. I set out to create something small and simple. This is my effort at that endeavor.'
       }
     ]
   },

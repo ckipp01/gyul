@@ -10,11 +10,15 @@ class Gyul {
     this.template = {
       document: {
         header: [
-          { type: 'h1',
-            text: '귤 (gyul)'
-          },
-          { type: 'h2',
-            text: this.tree.title
+          { type: 'h1', text: '귤 (gyul)' },
+          { type: 'h2', text: this.tree.title },
+          { type: 'div',
+            children: [
+              { type: 'p', text: 'info' },
+              { type: 'p', text: 'stats' },
+              { type: 'p', text: 'logs' },
+              { type: 'p', text: 'tags' }
+            ]
           }
         ],
         main: this.tree.body,
@@ -59,9 +63,11 @@ const createAndAttatch = async (elemObject, sectionElem) => {
     case 'img':
       elem = await createElem({ 'type': elemObject.type, 'attributes': elemObject.attributes })
       break
+    case 'div':
+      elem = await createElem({ 'type': elemObject.type })
+      break
   }
   sectionElem.appendChild(elem)
 }
 
 const retrieveTree = key => CRATE[key] ? CRATE[key] : CRATE.missing
-const retrieveTabData = key => {}
