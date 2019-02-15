@@ -1,5 +1,5 @@
 'use strict'
-/* global CRATE */
+/* global CRATE, LOGS, gyul */
 
 class Gyul {
   constructor (page) {
@@ -7,55 +7,42 @@ class Gyul {
       ? this.key = page.substring(1)
       : this.key = 'home'
     this.tree = retrieveTree(this.key)
+    this.view = 'info'
     this.template = {
       document: {
         header: [
           { type: 'h1', text: '귤 (gyul)' },
           { type: 'h2', text: this.tree.title },
           { type: 'div',
-            attributes: [
-              {
-                type: 'class',
-                value: 'flex-center'
-              }
-            ],
+            attributes: [{ type: 'class', value: 'flex-center' }],
             children: [
               { type: 'p',
                 text: 'info',
                 attributes: [
-                  {
-                    type: 'class',
-                    value: 'tabs'
-                  }
+                  { type: 'class', value: 'tabs' },
+                  { type: 'onclick', value: 'showInfo()' }
                 ]
               },
               { type: 'p',
                 text: 'stats',
                 attributes: [
-                  {
-                    type: 'class',
-                    value: 'tabs'
-                  }
+                  { type: 'class', value: 'tabs' },
+                  { type: 'onclick', value: 'showStats()' }
                 ]
               },
               { type: 'p',
                 text: 'logs',
                 attributes: [
-                  {
-                    type: 'class',
-                    value: 'tabs'
-                  }
+                  { type: 'class', value: 'tabs' },
+                  { type: 'onclick', value: 'showLogs()' }
                 ]
               },
               { type: 'p',
                 text: 'tags',
                 attributes: [
-                  {
-                    type: 'class',
-                    value: 'tabs'
-                  }
+                  { type: 'class', value: 'tabs' },
+                  { type: 'onclick', value: 'showTags()' }
                 ]
-
               }
             ]
           }
@@ -64,6 +51,9 @@ class Gyul {
         footer: []
       }
     }
+    this.stats = {}
+    this.logs = LOGS.filter(log => log.project === this.key)
+    this.tags = this.logs.flatMap(log => log.tags)
   }
   package () {
     for (const section in this.template.document) {
@@ -119,3 +109,15 @@ const createAndAttatch = async (elemObject, sectionElem) => {
 }
 
 const retrieveTree = key => CRATE[key] ? CRATE[key] : CRATE.missing
+const showInfo = () => {
+  const main = document.getElementsByTagName('main')[0]
+  main.innerHTML = createElem(gyul.template.document.main)
+}
+const showStats = () => console.log('stats')
+const showLogs = () => console.log('logs')
+const showTags = () => {
+  console.log('tags')
+  const main = document.getElementsByTagName('main')[0]
+  console.log(main)
+  main.innerHTML = '<h1>cool</h1>'
+}

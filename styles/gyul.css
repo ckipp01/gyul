@@ -1,6 +1,6 @@
 body {
   font-family: var(--font);
-  background-color: #E6E6E6;
+  background-color: #F3F5F9;
 }
 
 .container {
@@ -25,16 +25,11 @@ body {
 header {
   grid-column: span 3;
   padding: 30px;
-  text-align: center;
   font-size: 1.4em;
 }
 
 main {
   flex: 1;
-  padding: 20px;
-}
-
-nav {
   padding: 20px;
 }
 
@@ -52,7 +47,7 @@ h1 {
 }
 
 p {
-  margin: 5px 0;
+  margin: 1em 0;
 }
 
 img {
@@ -67,5 +62,5 @@ img {
 }
 
 .tabs {
-  margin: 5px;
+  margin: .5em;
 }
