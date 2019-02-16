@@ -1,5 +1,5 @@
 'use strict'
-/* global CRATE, LOGS, gyul */
+/* global CRATE, LOGS, GYUL */
 
 class Gyul {
   constructor (page) {
@@ -7,6 +7,11 @@ class Gyul {
       ? this.key = page.substring(1)
       : this.key = 'home'
     this.tree = retrieveTree(this.key)
+    this.stats = {}
+    this.logs = LOGS.filter(log => log.project === this.key)
+    this.tags = this.logs
+      .flatMap(log => log.tags)
+      .filter(log => log !== undefined)
     this.view = 'info'
     this.template = {
       document: {
@@ -51,9 +56,7 @@ class Gyul {
         footer: []
       }
     }
-    this.stats = {}
-    this.logs = LOGS.filter(log => log.project === this.key)
-    this.tags = this.logs.flatMap(log => log.tags)
+    console.log(this.tags)
   }
   package () {
     for (const section in this.template.document) {
@@ -111,13 +114,17 @@ const createAndAttatch = async (elemObject, sectionElem) => {
 const retrieveTree = key => CRATE[key] ? CRATE[key] : CRATE.missing
 const showInfo = () => {
   const main = document.getElementsByTagName('main')[0]
-  main.innerHTML = createElem(gyul.template.document.main)
+  main.innerHTML = ''
+  GYUL.template.document.main.forEach(elem => createAndAttatch(elem, main))
 }
 const showStats = () => console.log('stats')
-const showLogs = () => console.log('logs')
-const showTags = () => {
-  console.log('tags')
+const showLogs = () => {
   const main = document.getElementsByTagName('main')[0]
-  console.log(main)
-  main.innerHTML = '<h1>cool</h1>'
+  const logNotes = GYUL.logs.map(log => `<p>${log.notes}</p>`)
+  main.innerHTML = logNotes.join('')
+}
+const showTags = tags => {
+  const main = document.getElementsByTagName('main')[0]
+  const tagNames = GYUL.tags.map(tag => `<p>${tag}</p>`)
+  main.innerHTML = tagNames.join('')
 }
