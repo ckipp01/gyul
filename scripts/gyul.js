@@ -7,8 +7,9 @@ class Gyul {
       ? this.key = page.substring(1)
       : this.key = 'home'
     this.tree = retrieveTree(this.key)
-    this.stats = {}
     this.logs = LOGS.filter(log => log.project === this.key)
+    this.stats = this.logs
+      .reduce(retrieveStats, { totalEntries: this.logs.length, totalTime: 0 })
     this.tags = this.logs
       .flatMap(log => log.tags)
       .filter(log => log !== undefined)
@@ -29,6 +30,10 @@ class Gyul {
   }
 }
 
+const retrieveStats = (acc, cv) => {
+  acc.totalTime += Number(cv.time)
+  return acc
+}
 const createElem = elemObject => {
   const el = document.createElement(elemObject.type)
 
@@ -83,13 +88,16 @@ const retrieveTemplate = (template, title, body) => {
   return t(title, body)
 }
 
-const showStats = () => console.log('stats')
+const showStats = () => {
+  const main = document.getElementsByTagName('main')[0]
+  main.innerHTML = `<p>Total Entries: ${GYUL.stats.totalEntries}</p><p>Total Time Spent: ${GYUL.stats.totalTime}</p>`
+}
 const showLogs = () => {
   const main = document.getElementsByTagName('main')[0]
   const logNotes = GYUL.logs.map(log => `<p>${log.notes}</p>`)
   main.innerHTML = logNotes.join('')
 }
-const showTags = tags => {
+const showTags = () => {
   const main = document.getElementsByTagName('main')[0]
   const tagNames = GYUL.tags.map(tag => `<p>${tag}</p>`)
   main.innerHTML = tagNames.join('')

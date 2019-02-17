@@ -1,4 +1,4 @@
-const LOGS=
+const LOGS =
 [
   {
     "date": "2018-01-01",
@@ -3571,6 +3571,123 @@ const LOGS=
     "notes": "dove into some react stuff to better prepare for work",
     "location": "home",
     "project": "programming",
+    "tags": [
+      "javascript"
+    ]
+  },
+  {
+    "date": "2019-2-10",
+    "category": "research",
+    "time": 120,
+    "notes": "found a way to export logs from mongo, remove the id field, insert const LOGS = and save it as a js file to be used. Also worked on some general format stuff with gyul",
+    "location": "Filtro",
+    "project": "gyul",
+    "tags": [
+      "javascript",
+      "bash"
+    ]
+  },
+  {
+    "date": "2019-2-10",
+    "category": "explore",
+    "time": 60,
+    "notes": "still really working on the data structure and how gyul will work",
+    "location": "home",
+    "project": "gyul",
+    "tags": [
+      "javascript"
+    ]
+  },
+  {
+    "date": "2019-2-11",
+    "category": "study",
+    "time": 30,
+    "notes": "worked on dutch",
+    "location": "home",
+    "project": "language",
+    "tags": [
+      "dutch"
+    ]
+  },
+  {
+    "date": "2019-2-11",
+    "category": "design",
+    "time": 60,
+    "notes": "worked a lot on the layout of how I want chronica to be",
+    "location": "home",
+    "project": "chronica"
+  },
+  {
+    "date": "2019-2-12",
+    "category": "code",
+    "time": 45,
+    "notes": "worked a bit more on the class structure of gyul",
+    "location": "home",
+    "project": "gyul",
+    "tags": [
+      "javascript"
+    ]
+  },
+  {
+    "date": "2019-2-13",
+    "category": "code",
+    "time": 60,
+    "notes": "worked on some class layout of gyul and some basic styling",
+    "location": "home",
+    "project": "gyul",
+    "tags": [
+      "javascript",
+      "css"
+    ]
+  },
+  {
+    "date": "2019-2-13",
+    "category": "study",
+    "time": 45,
+    "notes": "worked through some YDKJ stuff again",
+    "location": "home",
+    "project": "programming",
+    "tags": [
+      "javascript"
+    ]
+  },
+  {
+    "date": "2019-2-13",
+    "category": "code",
+    "time": 45,
+    "notes": "worked on getting attributes in for elems",
+    "location": "home",
+    "project": "gyul",
+    "tags": [
+      "javascript"
+    ]
+  },
+  {
+    "date": "2019-2-14",
+    "category": "code",
+    "time": 60,
+    "notes": "worked on adding in more element types",
+    "location": "home",
+    "project": "gyul",
+    "tags": [
+      "javascript"
+    ]
+  },
+  {
+    "date": "2019-2-15",
+    "category": "explore",
+    "time": 45,
+    "notes": "messed around with a view various ways to do the main gyul",
+    "location": "home",
+    "project": "gyul"
+  },
+  {
+    "date": "2019-2-16",
+    "category": "code",
+    "time": 90,
+    "notes": "worked on adding in some more tab features",
+    "location": "home",
+    "project": "gyul",
     "tags": [
       "javascript"
     ]

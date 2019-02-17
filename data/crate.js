@@ -1,6 +1,7 @@
 const CRATE = {
-  'home': {
+  'gyul': {
     'title': 'home',
+    'template': 'mainTemplate',
     'body': [
       {
         'type': 'img',
@@ -53,6 +54,7 @@ const CRATE = {
   },
   'missing': {
     'title': 'Missing',
+    'template': 'mainTemplate',
     'body': [
       {
         'type': 'p',
