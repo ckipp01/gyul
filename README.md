@@ -2,11 +2,13 @@
 
 WIP micro framework-ish engine for displaying information for the chronica ecosystem
 
+I often find myself reaching for what I know, when the solution may be overkill. For simple static sites, we don't need giant frameworks. This is my attempt at creating something small to fulfill it's purpose.
+
 ## TODO
 #### short-term
 - [ ] figure out links in current format
 - [ ] figure out a way to combine `createElem` and `createAndAttatch`
-- [ ] figure out a way to put the template elsewhere
+- [x] figure out a way to put the template elsewhere
 - [ ] put in sensible defaults for all tabs if there are no values
 - [ ] create an index of all available keys
 - [ ] figure out how I want to do the data visualization 

@@ -27,6 +27,7 @@ const CRATE = {
   },
   'andaga': {
     'title': 'andaga',
+    'template': 'mainTemplate',
     'body': [
       {
         'type': 'p',

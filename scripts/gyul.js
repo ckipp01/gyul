@@ -1,5 +1,5 @@
 'use strict'
-/* global CRATE, LOGS, GYUL */
+/* global CRATE, LOGS, GYUL, TEMPLATES */
 
 class Gyul {
   constructor (page) {
@@ -13,56 +13,17 @@ class Gyul {
       .flatMap(log => log.tags)
       .filter(log => log !== undefined)
     this.view = 'info'
-    this.template = {
-      document: {
-        header: [
-          { type: 'h1', text: '귤 (gyul)' },
-          { type: 'h2', text: this.tree.title },
-          { type: 'div',
-            attributes: [{ type: 'class', value: 'flex-center' }],
-            children: [
-              { type: 'p',
-                text: 'info',
-                attributes: [
-                  { type: 'class', value: 'tabs' },
-                  { type: 'onclick', value: 'showInfo()' }
-                ]
-              },
-              { type: 'p',
-                text: 'stats',
-                attributes: [
-                  { type: 'class', value: 'tabs' },
-                  { type: 'onclick', value: 'showStats()' }
-                ]
-              },
-              { type: 'p',
-                text: 'logs',
-                attributes: [
-                  { type: 'class', value: 'tabs' },
-                  { type: 'onclick', value: 'showLogs()' }
-                ]
-              },
-              { type: 'p',
-                text: 'tags',
-                attributes: [
-                  { type: 'class', value: 'tabs' },
-                  { type: 'onclick', value: 'showTags()' }
-                ]
-              }
-            ]
-          }
-        ],
-        main: this.tree.body,
-        footer: []
-      }
-    }
-    console.log(this.tags)
+    this.template = retrieveTemplate(
+      this.tree.template,
+      this.tree.title,
+      this.tree.body
+    )
   }
   package () {
-    for (const section in this.template.document) {
+    for (const section in this.template) {
       const sectionElem =
         document.body.appendChild(createElem({ 'type': section }))
-      this.template.document[section]
+      this.template[section]
         .forEach(item => createAndAttatch(item, sectionElem))
     }
   }
@@ -115,8 +76,13 @@ const retrieveTree = key => CRATE[key] ? CRATE[key] : CRATE.missing
 const showInfo = () => {
   const main = document.getElementsByTagName('main')[0]
   main.innerHTML = ''
-  GYUL.template.document.main.forEach(elem => createAndAttatch(elem, main))
+  GYUL.template.main.forEach(elem => createAndAttatch(elem, main))
 }
+const retrieveTemplate = (template, title, body) => {
+  const t = TEMPLATES[template]
+  return t(title, body)
+}
+
 const showStats = () => console.log('stats')
 const showLogs = () => {
   const main = document.getElementsByTagName('main')[0]
