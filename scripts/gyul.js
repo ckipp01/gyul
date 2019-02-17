@@ -25,15 +25,17 @@ class Gyul {
       const sectionElem =
         document.body.appendChild(createElem({ 'type': section }))
       this.template[section]
-        .forEach(item => createAndAttatch(item, sectionElem))
+        .forEach(item => createElem({
+          type: item.type,
+          text: item.text,
+          attributes: item.attributes,
+          children: item.children,
+          parent: sectionElem
+        }))
     }
   }
 }
 
-const retrieveStats = (acc, cv) => {
-  acc.totalTime += Number(cv.time)
-  return acc
-}
 const createElem = elemObject => {
   const el = document.createElement(elemObject.type)
 
@@ -50,11 +52,21 @@ const createElem = elemObject => {
   if (elemObject.children) {
     elemObject.children
       .map(child => {
-        createAndAttatch(child, el)
+        createElem({
+          type: child.type,
+          text: child.text,
+          attributes: child.attributes,
+          children: child.children,
+          parent: el
+        })
       })
   }
 
-  return el
+  if (elemObject.parent) {
+    elemObject.parent.appendChild(el)
+  } else {
+    return el
+  }
 }
 
 const createAndAttatch = async (elemObject, sectionElem) => {
@@ -81,13 +93,24 @@ const retrieveTree = key => CRATE[key] ? CRATE[key] : CRATE.missing
 const showInfo = () => {
   const main = document.getElementsByTagName('main')[0]
   main.innerHTML = ''
-  GYUL.template.main.forEach(elem => createAndAttatch(elem, main))
+  GYUL.template.main
+    .forEach(elem => createElem({
+      type: elem.type,
+      text: elem.text,
+      attributes: elem.attributes,
+      children: elem.children,
+      parent: main
+    }))
 }
 const retrieveTemplate = (template, title, body) => {
   const t = TEMPLATES[template]
   return t(title, body)
 }
 
+const retrieveStats = (acc, cv) => {
+  acc.totalTime += Number(cv.time)
+  return acc
+}
 const showStats = () => {
   const main = document.getElementsByTagName('main')[0]
   main.innerHTML = `<p>Total Entries: ${GYUL.stats.totalEntries}</p><p>Total Time Spent: ${GYUL.stats.totalTime}</p>`

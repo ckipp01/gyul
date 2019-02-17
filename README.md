@@ -7,7 +7,7 @@ I often find myself reaching for what I know, when the solution may be overkill.
 ## TODO
 #### short-term
 - [ ] figure out links in current format
-- [ ] figure out a way to combine `createElem` and `createAndAttatch`
+- [x] figure out a way to combine `createElem` and `createAndAttatch`
 - [x] figure out a way to put the template elsewhere
 - [ ] put in sensible defaults for all tabs if there are no values
 - [ ] create an index of all available keys
