@@ -4,7 +4,12 @@ const TEMPLATES = {
   mainTemplate: function (title, body) {
     const t = {
       header: [
-        { type: 'h1', text: '귤 (gyul)' },
+        { type: 'a',
+          attributes: [{ type: 'href', value: 'index.html#home' }],
+          children: [
+            { type: 'h1', text: '귤 (gyul)' }
+          ]
+        },
         { type: 'h2', text: title },
         { type: 'div',
           attributes: [{ type: 'class', value: 'flex-center' }],

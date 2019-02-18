@@ -32,10 +32,7 @@ class Gyul {
 const createElem = elemObject => {
   const elem = document.createElement(elemObject.elem.type)
 
-  if (elemObject.elem.text) {
-    const textNode = document.createTextNode(elemObject.elem.text)
-    elem.appendChild(textNode)
-  }
+  if (elemObject.elem.text) { elem.innerHTML = elemObject.elem.text }
 
   if (elemObject.elem.attributes) {
     elemObject.elem.attributes
@@ -75,7 +72,8 @@ const showInfo = () => {
 
 const showStats = () => {
   const main = document.getElementsByTagName('main')[0]
-  main.innerHTML = `<p>Total Entries: ${GYUL.stats.totalEntries}</p><p>Total Time Spent: ${GYUL.stats.totalTime}</p>`
+  main.innerHTML = `<p>Total Entries: ${GYUL.stats.totalEntries}</p>
+                    <p>Total Time Spent: ${GYUL.stats.totalTime}</p>`
 }
 
 const showLogs = () => {
@@ -89,3 +87,5 @@ const showTags = () => {
   const tagNames = GYUL.tags.map(tag => `<p>${tag}</p>`)
   main.innerHTML = tagNames.join('')
 }
+
+window.addEventListener('hashchange', () => window.location.reload(false))
