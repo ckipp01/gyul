@@ -8,8 +8,8 @@ class Gyul {
       : this.key = 'home'
     this.tree = retrieveTree(this.key)
     this.logs = LOGS.filter(log => log.project === this.key)
-    this.stats = this.logs
-      .reduce(retrieveStats, { totalEntries: this.logs.length, totalTime: 0 })
+    this.groupedLogs = groupByType(this.logs)
+    this.stats = this.logs.reduce(retrieveStats, Object.create(null))
     this.tags = this.logs
       .flatMap(log => log.tags)
       .filter(log => log !== undefined)
@@ -58,8 +58,9 @@ const retrieveTemplate = (template, title, body) => {
   return t(title, body)
 }
 
-const retrieveStats = (acc, cv) => {
-  acc.totalTime += Number(cv.time)
+const retrieveStats = (acc, cur) => {
+  acc.totalTime = acc.totalTime || 0
+  acc.totalTime = acc.totalTime + cur.time
   return acc
 }
 
@@ -71,9 +72,21 @@ const showInfo = () => {
 }
 
 const showStats = () => {
+  // TODO maybe just grap the logs and group them here so we can group
+  // them the way we want. Don't optimize prematurely
   const main = document.getElementsByTagName('main')[0]
-  main.innerHTML = `<p>Total Entries: ${GYUL.stats.totalEntries}</p>
-                    <p>Total Time Spent: ${GYUL.stats.totalTime}</p>`
+  const categories = Object.keys(GYUL.groupedLogs)
+  const t = categories.map(category => {
+    return GYUL.groupedLogs[category].map(log => log.time)
+  })
+  console.log(t)
+
+  console.log(categories)
+
+  main.innerHTML = `<p>Total Time Spent: ${GYUL.stats.totalTime}</p>
+                    <svg width="400" height="110">
+                      <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
+                    </svg>`
 }
 
 const showLogs = () => {
@@ -86,6 +99,14 @@ const showTags = () => {
   const main = document.getElementsByTagName('main')[0]
   const tagNames = GYUL.tags.map(tag => `<p>${tag}</p>`)
   main.innerHTML = tagNames.join('')
+}
+
+const groupByType = logs => {
+  return logs.reduce((acc, cur) => {
+    acc[cur.category] = acc[cur.category] || []
+    acc[cur.category].push(cur)
+    return acc
+  }, Object.create(null))
 }
 
 window.addEventListener('hashchange', () => window.location.reload(false))
