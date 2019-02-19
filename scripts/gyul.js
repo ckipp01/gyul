@@ -9,7 +9,6 @@ class Gyul {
     this.tree = retrieveTree(this.key)
     this.logs = LOGS.filter(log => log.project === this.key)
     this.groupedLogs = groupByType(this.logs)
-    this.stats = this.logs.reduce(retrieveStats, Object.create(null))
     this.tags = this.logs
       .flatMap(log => log.tags)
       .filter(log => log !== undefined)
@@ -58,12 +57,6 @@ const retrieveTemplate = (template, title, body) => {
   return t(title, body)
 }
 
-const retrieveStats = (acc, cur) => {
-  acc.totalTime = acc.totalTime || 0
-  acc.totalTime = acc.totalTime + cur.time
-  return acc
-}
-
 const showInfo = () => {
   const main = document.getElementsByTagName('main')[0]
   main.innerHTML = ''
@@ -72,20 +65,30 @@ const showInfo = () => {
 }
 
 const showStats = () => {
-  // TODO maybe just grap the logs and group them here so we can group
-  // them the way we want. Don't optimize prematurely
   const main = document.getElementsByTagName('main')[0]
-  const categories = Object.keys(GYUL.groupedLogs)
-  const t = categories.map(category => {
-    return GYUL.groupedLogs[category].map(log => log.time)
+  const categoryTotal = GYUL.logs.reduce((acc, cur) => acc + cur.time, 0)
+  const categories = Object.keys(GYUL.groupedLogs).sort()
+
+  const summarizer = (acc, cur) => {
+    acc[cur.category] = acc[cur.category] || Object.create(null)
+    acc[cur.category].time = acc[cur.category].time || 0
+    acc[cur.category].time += cur.time
+    return acc
+  }
+
+  const totals = categories.map(category => {
+    const y = GYUL.groupedLogs[category]
+      .reduce(summarizer, Object.create(null))
+    y[category].totalLogs = GYUL.groupedLogs[category].length
+    y[category].percentage = Math.round((y[category].time / categoryTotal) * 100)
+    return y
   })
-  console.log(t)
 
-  console.log(categories)
+  console.log(totals)
 
-  main.innerHTML = `<p>Total Time Spent: ${GYUL.stats.totalTime}</p>
+  main.innerHTML = `<p>Total Time Spent: ${categoryTotal}</p>
                     <svg width="400" height="110">
-                      <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
+                      <rect width="500" height="5" style="fill:#0B132B" />
                     </svg>`
 }
 
