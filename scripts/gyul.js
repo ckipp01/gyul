@@ -84,12 +84,26 @@ const showStats = () => {
     return y
   })
 
-  console.log(totals)
+  const rects = totals.map(total => {
+    const type = Object.keys(total)[0]
+    const width = 500 * (total[type].percentage / 100)
+    const rect = `<div>
+                    <svg height="5">
+                      <rect width="${width}" height="5" class="${type}-logbar" />
+                    </svg>
+                  </div>`
+    return rect
+  })
+
+  console.log(rects.join(''))
 
   main.innerHTML = `<p>Total Time Spent: ${categoryTotal}</p>
-                    <svg width="400" height="110">
-                      <rect width="500" height="5" style="fill:#0B132B" />
+                    <svg height="5">
+                      <rect width="100" height="5" style="fill:#0B132B" />
+                      <rect width="100" height="5" style="fill:#1C2541" />
+                      <rect height="5" style="fill:#F15025" />
                     </svg>`
+  main.innerHTML = rects.join('')
 }
 
 const showLogs = () => {

@@ -64,3 +64,19 @@ img {
 .tabs {
   margin: .5em;
 }
+
+.code-logbar {
+  fill: #0C1713;
+}
+
+.explore-logbar {
+  fill: #1C2541;
+}
+
+.plan-logbar {
+  fill: #F15025;
+}
+
+.research-logbar {
+  fill: #0B132B;
+}
