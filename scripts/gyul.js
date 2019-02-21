@@ -95,15 +95,19 @@ const showStats = () => {
     return rect
   })
 
-  console.log(rects.join(''))
+  const keys = totals.map(total => {
+    const type = Object.keys(total)[0]
+    return `<div class="key-block">
+              <p>${type}</p>
+              <svg height="10" width="10" class="key-color">
+                <rect width="10" height="10" class="${type}-logbar" />
+              </svg>
+            </div>`
+  })
+  const wrappedKeys = [`<div class='keys-container'>`, ...keys, `</div>`]
+  const innards = [...wrappedKeys, ...rects]
 
-  main.innerHTML = `<p>Total Time Spent: ${categoryTotal}</p>
-                    <svg height="5">
-                      <rect width="100" height="5" style="fill:#0B132B" />
-                      <rect width="100" height="5" style="fill:#1C2541" />
-                      <rect height="5" style="fill:#F15025" />
-                    </svg>`
-  main.innerHTML = rects.join('')
+  main.innerHTML = innards.join('')
 }
 
 const showLogs = () => {
@@ -120,8 +124,7 @@ const showTags = () => {
 
 const groupByType = logs => {
   return logs.reduce((acc, cur) => {
-    acc[cur.category] = acc[cur.category] || []
-    acc[cur.category].push(cur)
+    (acc[cur.category] = acc[cur.category] || []).push(cur)
     return acc
   }, Object.create(null))
 }

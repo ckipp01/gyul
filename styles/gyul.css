@@ -66,17 +66,37 @@ img {
 }
 
 .code-logbar {
-  fill: #0C1713;
+  fill: #45503B;
 }
 
 .explore-logbar {
-  fill: #1C2541;
+  fill: #D15B3A;
 }
 
-.plan-logbar {
-  fill: #F15025;
+.study-logbar {
+  fill: #1F2421;
 }
 
 .research-logbar {
-  fill: #0B132B;
+  fill: #323744;
+}
+
+.admin-logbar {
+  fill: green;
+}
+
+.design-logbar {
+  fill: blue;
+}
+
+.key-block,
+.keys-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 .5em;
+}
+
+.key-color {
+  margin: 0 .5em;
 }
