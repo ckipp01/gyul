@@ -84,10 +84,26 @@ const showStats = () => {
     return y
   })
 
+  const keys = totals.map(total => {
+    const type = Object.keys(total)[0]
+    return `<div class="key-block">
+              <svg height="10" width="10" class="key-color">
+                <rect width="10" height="10" class="${type}-logbar" />
+              </svg>
+              <p>${type} ${total[type].percentage}%</p>
+            </div>`
+  })
+
+  const wrappedKeys = [
+    `<h3>Breakdown of ${categoryTotal} minutes</h3><div class='keys-container'>`,
+    ...keys,
+    `</div>`
+  ]
+
   const rects = totals.map(total => {
     const type = Object.keys(total)[0]
     const width = 500 * (total[type].percentage / 100)
-    const rect = `<div>
+    const rect = `<div class="graph-container">
                     <svg height="5">
                       <rect width="${width}" height="5" class="${type}-logbar" />
                     </svg>
@@ -95,16 +111,6 @@ const showStats = () => {
     return rect
   })
 
-  const keys = totals.map(total => {
-    const type = Object.keys(total)[0]
-    return `<div class="key-block">
-              <p>${type}</p>
-              <svg height="10" width="10" class="key-color">
-                <rect width="10" height="10" class="${type}-logbar" />
-              </svg>
-            </div>`
-  })
-  const wrappedKeys = [`<div class='keys-container'>`, ...keys, `</div>`]
   const innards = [...wrappedKeys, ...rects]
 
   main.innerHTML = innards.join('')
@@ -112,8 +118,10 @@ const showStats = () => {
 
 const showLogs = () => {
   const main = document.getElementsByTagName('main')[0]
-  const logNotes = GYUL.logs.map(log => `<p>${log.notes}</p>`)
-  main.innerHTML = logNotes.join('')
+  const logNotes = GYUL.logs
+    .map(log => `<p>${log.notes}<br>${log.date}<br>${log.time} minutes<br>${log.place}</p>`)
+  const logNotesWithHeading = [`<h3>Breakdown of ${logNotes.length} logs</h3>`, ...logNotes]
+  main.innerHTML = logNotesWithHeading.join('')
 }
 
 const showTags = () => {

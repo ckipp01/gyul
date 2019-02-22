@@ -24,7 +24,7 @@ body {
 
 header {
   grid-column: span 3;
-  padding: 30px;
+  padding: 2em 2em 1em 2em;
   font-size: 1.4em;
 }
 
@@ -93,7 +93,6 @@ img {
 .keys-container {
   display: flex;
   align-items: center;
-  justify-content: center;
   margin: 0 .5em;
 }
 
