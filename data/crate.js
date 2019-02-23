@@ -1,7 +1,7 @@
 const CRATE = {
   'gyul': {
-    'title': 'gyul',
-    'template': 'mainTemplate',
+    'title': 'home',
+    'template': 'homeTemplate',
     'body': [
       {
         'type': 'img',
@@ -18,11 +18,11 @@ const CRATE = {
       },
       {
         'type': 'p',
-        'text': 'Gyul is an attempt to make an extremely small micro framework like library that will allow me to display info, logs, and graphs.'
+        'text': `Gyul is an attempt to make a small wiki engine that will seamlessly tie into my timetracker, <a href='index.html#andaga'>ándaga </a>.`
       },
       {
         'type': 'p',
-        'text': 'For a while I found myself reverting to large frameworks for simple tasks just because I knew the technology. There came a point where I realized the amount of overhead they brought for such simple tasks was nonsense. I set out to create something small and simple. This is my effort at that endeavor.'
+        'text': `For a while I found myself reverting to large frameworks for simple tasks just because I knew the technology. There came a point where I realized the amount of overhead they brought for such simple tasks was not always necessary. I set out to create something small and simple. This is my effort at that endeavor. It doesn't to a ton, but does exactly what I need it to. It's also flexible enough that if needed to be adapted for another project, it can be.`
       }
     ]
   },

@@ -5,7 +5,10 @@ const TEMPLATES = {
     const t = {
       header: [
         { type: 'a',
-          attributes: [{ type: 'href', value: 'index.html#home' }],
+          attributes: [
+            { type: 'href', value: 'index.html#gyul' },
+            { type: 'class', value: 'logo' }
+          ],
           children: [
             { type: 'h1', text: '귤 (gyul)' }
           ]
@@ -41,6 +44,33 @@ const TEMPLATES = {
                 { type: 'class', value: 'tabs' },
                 { type: 'onclick', value: 'showTags()' }
               ]
+            }
+          ]
+        }
+      ],
+      main: body,
+      footer: []
+    }
+    return t
+  },
+  homeTemplate: function (title, body) {
+    const t = {
+      header: [
+        { type: 'a',
+          attributes: [
+            { type: 'href', value: 'index.html#gyul' },
+            { type: 'class', value: 'logo' }
+          ],
+          children: [
+            { type: 'h1', text: '귤 (gyul)' }
+          ]
+        },
+        { type: 'h2', text: title },
+        { type: 'div',
+          attributes: [{ type: 'class', value: 'flex-center' }],
+          children: [
+            { type: 'p',
+              text: 'welcome to 귤'
             }
           ]
         }

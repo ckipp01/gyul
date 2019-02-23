@@ -28,6 +28,10 @@ header {
   font-size: 1.4em;
 }
 
+.logo {
+  text-decoration: none;
+}
+
 main {
   flex: 1;
   padding: 20px;
@@ -54,6 +58,10 @@ img {
   display: block;
   margin: auto;
   max-width: 100%;
+}
+a {
+  text-decoration: underline #45503B;
+  text-underline-position: under;
 }
 
 .flex-center {

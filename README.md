@@ -11,8 +11,9 @@ I often find myself reaching for what I know, when the solution may be overkill.
 - [x] figure out a way to put the template elsewhere
 - [ ] put in sensible defaults for all tabs if there are no values
 - [ ] create an index of all available keys
-- [ ] figure out how I want to do the data visualization 
-- [ ] build the data visualization 
+- [x] figure out how I want to do the data visualization 
+- [x] build the data visualization 
+- [ ] figure out a better way to do links to not have to fully write them out every time
 
 #### long-term
 - [ ] there is a tons of impure code in here.
