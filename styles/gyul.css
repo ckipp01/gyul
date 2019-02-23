@@ -82,11 +82,11 @@ img {
 }
 
 .admin-logbar {
-  fill: green;
+  fill: #40798C;
 }
 
 .design-logbar {
-  fill: blue;
+  fill: #F3DE8A;
 }
 
 .key-block,
@@ -94,6 +94,13 @@ img {
   display: flex;
   align-items: center;
   margin: 0 .5em;
+}
+
+.keys-container {
+  display: flex;
+  align-items: center;
+  margin: 1em 0;
+
 }
 
 .key-color {

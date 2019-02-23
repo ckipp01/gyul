@@ -1,6 +1,6 @@
 const CRATE = {
   'gyul': {
-    'title': 'home',
+    'title': 'gyul',
     'template': 'mainTemplate',
     'body': [
       {

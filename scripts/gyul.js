@@ -5,7 +5,7 @@ class Gyul {
   constructor (page) {
     page
       ? this.key = page.substring(1)
-      : this.key = 'home'
+      : this.key = 'gyul'
     this.tree = retrieveTree(this.key)
     this.logs = LOGS.filter(log => log.project === this.key)
     this.groupedLogs = groupByType(this.logs)
@@ -104,8 +104,8 @@ const showStats = () => {
     const type = Object.keys(total)[0]
     const width = 500 * (total[type].percentage / 100)
     const rect = `<div class="graph-container">
-                    <svg height="5">
-                      <rect width="${width}" height="5" class="${type}-logbar" />
+                    <svg height="7">
+                      <rect width="${width}" height="7" class="${type}-logbar" />
                     </svg>
                   </div>`
     return rect
@@ -119,15 +119,25 @@ const showStats = () => {
 const showLogs = () => {
   const main = document.getElementsByTagName('main')[0]
   const logNotes = GYUL.logs
-    .map(log => `<p>${log.notes}<br>${log.date}<br>${log.time} minutes<br>${log.place}</p>`)
+    .reverse()
+    .map(log => `<p>${log.notes}<br>${log.date}<br>${log.time} minutes<br>${log.location}</p>`)
   const logNotesWithHeading = [`<h3>Breakdown of ${logNotes.length} logs</h3>`, ...logNotes]
   main.innerHTML = logNotesWithHeading.join('')
 }
 
 const showTags = () => {
   const main = document.getElementsByTagName('main')[0]
-  const tagNames = GYUL.tags.map(tag => `<p>${tag}</p>`)
-  main.innerHTML = tagNames.join('')
+  const tagCounter = (acc, cur) => {
+    (acc[cur] = acc[cur] || 0)
+    acc[cur] = acc[cur] += 1
+    return acc
+  }
+  const countedTags = GYUL.tags.reduce(tagCounter, {})
+  const tagNames = Object.keys(countedTags).sort()
+  const tags = tagNames
+    .map(tagName => `<a href='index.html#${tagName}'><p>${countedTags[tagName]} - ${tagName}</p></a>`)
+  const tagsWithHeading = [`<h3>Tagged with ${GYUL.tags.length} tags</h3>`, ...tags]
+  main.innerHTML = tagsWithHeading.join('')
 }
 
 const groupByType = logs => {
