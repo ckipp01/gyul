@@ -1,5 +1,12 @@
+@font-face {
+  font-family: 'inter';
+  src: url('../fonts/Inter.var.ttf') format('truetype-variations');
+  font-weight: 1 999;
+}
+
 body {
-  font-family: var(--font);
+  font-family: 'inter';
+  font-weight: 300;
   background-color: #f7f7f7;
 }
 
@@ -9,23 +16,19 @@ body {
   min-height: 100vh;
 }
 
-
-@media (min-width: 768px) {
-  .container {
-    display: grid;
-    grid-template-columns: 200px 1fr 200px;
-    grid-template-rows: auto 1fr auto;
-  }
-  body {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-}
-
 header {
   grid-column: span 3;
-  padding: 2em 2em 1em 2em;
+  padding: 2em 2em 0 2em;
   font-size: 1.4em;
+  text-align: center;
+}
+
+i {
+  font-style: italic;
+}
+
+b {
+  font-weight: 400;
 }
 
 .logo {
@@ -44,24 +47,74 @@ footer {
   font-size: 1.4em;
 }
 
-h1 {
+h1, h2, h3, h4, h5 {
   margin-bottom: 1em;
+}
+
+h1 {
+  font-size: 1.4em;
+  font-weight: 700;
+}
+
+h2 {
   font-size: 1.3em;
-  font-weight: bold;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+h5 {
+  font-size: 1em;
+  font-weight: 400;
 }
 
 p {
-  margin: 1em 0;
+  margin-bottom: 1em;
 }
 
-img {
-  display: block;
-  margin: auto;
+li {
+  margin: 0 0 1em 1em;
+}
+
+code {
+  padding: .25em;
+  background: #fff;
+  font-family: monospace;
+}
+
+.code-block {
+  background: #fff;
+  padding-left: 1em;
+  margin-bottom: 1em;
+}
+
+.media-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-image {
+  margin: auto auto 1em auto;
   max-width: 100%;
 }
+
+.gyul-logo {
+  font-size: 5em;
+  margin: 0;
+}
+
 a {
+  font-weight: 400;
   text-decoration: underline #45503B;
-  text-underline-position: under;
+}
+
+a:hover,
+.tabs:hover {
+  text-decoration: underline #D15B3A;
 }
 
 .flex-center {
@@ -71,6 +124,8 @@ a {
 
 .tabs {
   margin: .5em;
+  cursor: pointer;
+  font-weight: 400;
 }
 
 .code-logbar {
@@ -106,11 +161,46 @@ a {
 
 .keys-container {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   margin: 1em 0;
-
 }
 
 .key-color {
-  margin: 0 .5em;
+  margin: 0 .5em 1em .5em;
 }
+
+.project-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.project-list > div {
+  margin: 1em;
+  width: 200px;
+}
+
+.contact {
+  display: flex;
+  justify-content: center;
+}
+
+.contact img {
+  width: 32px;
+  height: 32px;
+}
+
+@media (min-width: 768px) {
+  body {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  header {
+    text-align: left;
+  }
+  .project-list {
+    justify-content: space-between;
+  }
+}
+
