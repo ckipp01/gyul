@@ -40,7 +40,7 @@ const CRATE = {
     body: [
       {
         type: 'p',
-        text: `Feel free to explore. This is my collected works and logs. If you don't know here to start, you can get an introduction <a href='#chronica'>here</a> or click on any of the projects below.`
+        text: `This is a small experiment to create a minimal wiki engine that integrates with my timetracker, ándaga.`
       },
       {
         type: 'div',
@@ -61,27 +61,4 @@ const CRATE = {
       }
     ]
   }
-}
-
-function createProjectObject (acc, cur) {
-  acc[cur.project] = acc[cur.project] || {}
-  acc[cur.project].time = acc[cur.project].time || 0
-  acc[cur.project].entries = acc[cur.project].entries || 0
-  acc[cur.project].time = acc[cur.project].time += cur.time
-  acc[cur.project].entries = acc[cur.project].entries += 1
-  return acc
-}
-
-function createProjects (logs) {
-  const logsObject = logs
-    .filter(_ => _.project !== undefined)
-    .reduce(createProjectObject, Object.create(null))
-  const projects = Object.keys(logsObject)
-  return projects
-    .sort()
-    .map(p => `<div>
-                  <p>Project: <a href='#${p}'>${p}</a><br>
-                  Time: ${logsObject[p].time} minutes<br>
-                  Entries: ${logsObject[p].entries} logs
-                </div>`)
 }
