@@ -138,7 +138,8 @@ const showLogs = () => {
   const main = document.getElementsByTagName('main')[0]
   const logNotes = GYUL.logs
     .map(log => `<p>${log.notes}<br>${log.date}<br>${log.time} minutes</p>`)
-  const logNotesWithHeading = [`<h3>Breakdown of ${logNotes.length} logs</h3>`, ...logNotes]
+  const plurality = logNotes.length > 1 ? 'logs' : 'log'
+  const logNotesWithHeading = [`<h3>Breakdown of ${logNotes.length} ${plurality}</h3>`, ...logNotes]
   main.innerHTML = logNotesWithHeading.join('')
 }
 
@@ -150,11 +151,13 @@ const showTags = () => {
     acc[cur] = acc[cur] += 1
     return acc
   }
-  const countedTags = GYUL.tags.reduce(tagCounter, {})
+  const flattened = [].concat.apply([], GYUL.tags)
+  const countedTags = flattened.reduce(tagCounter, {})
   const tagNames = Object.keys(countedTags).sort()
   const tags = tagNames
     .map(tagName => `<p>${countedTags[tagName]} - <a href='#${tagName}'>${tagName}</p></a>`)
-  const tagsWithHeading = [`<h3>Tagged with ${GYUL.tags.length} tags</h3>`, ...tags]
+  const plurality = GYUL.tags.length > 1 ? 'tags' : 'tag'
+  const tagsWithHeading = [`<h3>Tagged with ${GYUL.tags.length} ${plurality}</h3>`, ...tags]
   main.innerHTML = tagsWithHeading.join('')
 }
 

@@ -33,6 +33,7 @@ b {
 
 .logo {
   text-decoration: none;
+  -webkit-text-decoration: none;
 }
 
 main {
@@ -110,11 +111,13 @@ code {
 a {
   font-weight: 400;
   text-decoration: underline #45503B;
+  -webkit-text-decoration: underline #45503B;
 }
 
 a:hover,
 .tabs:hover {
   text-decoration: underline #D15B3A;
+  -webkit-text-decoration: underline #D15B3A;
 }
 
 .flex-center {
