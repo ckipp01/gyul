@@ -1,4 +1,4 @@
-'use strict'
+'use-strict'
 
 const createProjectObject = (acc, cur) => {
   acc[cur.project] = acc[cur.project] || {}
@@ -21,7 +21,7 @@ const createProjects = logs => {
       return `<div>
                 <p>Project: <a href='#${p}'>${p}</a><br>
                 Time: ${logsObject[p].time} minutes<br>
-                Entries: ${logsObject[p].entries} ${plurality}
-              </div>`
+                Entries: ${logsObject[p].entries} ${plurality} 
+               </div>`
     })
 }

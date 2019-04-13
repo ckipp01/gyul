@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="description" content="Simply gyul"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="styles/reset.css"/>
-  <link rel="stylesheet" type="text/css" href="styles/gyul.css"/>
-  <script type="text/javascript" src="data/logs.js"></script>
-  <script type="text/javascript" src="scripts/crate-helpers.js"></script>
-  <script type="text/javascript" src="data/crate.js"></script>
-  <script type="text/javascript" src="scripts/template.js"></script>
-  <script type="text/javascript" src="scripts/gyul.js"></script>
-  <title>귤</title>
-</head>
-<body>
-  <noscript>
-    gyul currently only works with JS enabled.
-  </noscript>
-  <script>
-    const GYUL = Gyul(window.location.hash)
-    GYUL.package()
-  </script>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Simply gyul"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="styles/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/gyul.css"/>
+    <script type="text/javascript" src="data/logs.js"></script>
+    <script type="text/javascript" src="scripts/crate-helpers.js"></script>
+    <script type="text/javascript" src="data/crate.js"></script>
+    <script type="text/javascript" src="scripts/template.js"></script>
+    <script type="text/javascript" src="scripts/gyul.js"></script>
+    <title>귤</title>
+  </head>
+  <body>
+    <noscript>
+      gyul currently only works with JS enabled.
+    </noscript>
+    <script>
+      const GYUL = Gyul()
+      GYUL.package(window.location.hash)
+    </script>
+  </body>
 </html>

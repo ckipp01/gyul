@@ -1,7 +1,29 @@
 'use strict'
+const footer = [
+  { type: 'div',
+    attributes: [{ type: 'class', value: 'contact' }],
+    children: [
+      {
+        type: 'a',
+        attributes: [
+          { type: 'href', value: 'https://github.com/ckipp01/gyul' },
+          { type: 'target', value: '_blank' }
+        ],
+        children: [
+          { type: 'img',
+            attributes: [
+              { type: 'src', value: 'media/github.png' },
+              { type: 'alt', value: 'Github icon' }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
 
 const TEMPLATES = {
-  mainTemplate: function (title, body) {
+  main: function (title, body) {
     const t = {
       header: [
         { type: 'a',
@@ -10,7 +32,7 @@ const TEMPLATES = {
             { type: 'class', value: 'logo' }
           ],
           children: [
-            { type: 'h1', text: 'gyul' }
+            { type: 'h1', text: 'chronica' }
           ]
         },
         { type: 'h2', text: title },
@@ -22,7 +44,7 @@ const TEMPLATES = {
               attributes: [
                 { type: 'class', value: 'tabs' },
                 { type: 'id', value: 'info' },
-                { type: 'onclick', value: 'showInfo()' }
+                { type: 'onclick', value: 'GYUL.showInfo(window.location.hash)' }
               ]
             },
             { type: 'h5',
@@ -30,7 +52,7 @@ const TEMPLATES = {
               attributes: [
                 { type: 'class', value: 'tabs' },
                 { type: 'id', value: 'stats' },
-                { type: 'onclick', value: 'showStats()' }
+                { type: 'onclick', value: 'GYUL.showStats(window.location.hash)' }
               ]
             },
             { type: 'h5',
@@ -38,7 +60,7 @@ const TEMPLATES = {
               attributes: [
                 { type: 'class', value: 'tabs' },
                 { type: 'id', value: 'logs' },
-                { type: 'onclick', value: 'showLogs()' }
+                { type: 'onclick', value: 'GYUL.showLogs(window.location.hash)' }
               ]
             },
             { type: 'h5',
@@ -46,35 +68,18 @@ const TEMPLATES = {
               attributes: [
                 { type: 'class', value: 'tabs' },
                 { type: 'id', value: 'tags' },
-                { type: 'onclick', value: 'showTags()' }
+                { type: 'onclick', value: 'GYUL.showTags(window.location.hash)' }
               ]
             }
           ]
         }
       ],
       main: body,
-      footer: [
-        { type: 'div',
-          attributes: [{ type: 'class', value: 'contact' }],
-          children: [
-            { type: 'a',
-              attributes: [
-                { type: 'href', value: 'https://github.com/ckipp01/gyul' },
-                { type: 'target', value: '_blank' }
-              ],
-              children: [
-                { type: 'img',
-                  attributes: [{ type: 'src', value: 'media/github.png' }]
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      footer: footer
     }
     return t
   },
-  homeTemplate: function (title, body) {
+  basic: function (title, body) {
     const t = {
       header: [
         { type: 'a',
@@ -83,7 +88,7 @@ const TEMPLATES = {
             { type: 'class', value: 'logo' }
           ],
           children: [
-            { type: 'h1', text: 'gyul' }
+            { type: 'h1', text: 'chronica' }
           ]
         },
         { type: 'h2', text: title },
@@ -91,30 +96,13 @@ const TEMPLATES = {
           attributes: [{ type: 'class', value: 'flex-center' }],
           children: [
             { type: 'h5',
-              text: 'welcome to gyul'
+              text: 'welcome to the chronica wiki'
             }
           ]
         }
       ],
       main: body,
-      footer: [
-        { type: 'div',
-          attributes: [{ type: 'class', value: 'contact' }],
-          children: [
-            { type: 'a',
-              attributes: [
-                { type: 'href', value: 'https://github.com/ckipp01/gyul' },
-                { type: 'target', value: '_blank' }
-              ],
-              children: [
-                { type: 'img',
-                  attributes: [{ type: 'src', value: 'media/github.png' }]
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      footer: footer
     }
     return t
   }
