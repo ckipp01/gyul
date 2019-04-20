@@ -1,3 +1,6 @@
+'use strict'
+/* global LOGS, createProjects */
+
 const CRATE = {
   gyul: {
     title: '귤 gyul',
@@ -95,7 +98,7 @@ const CRATE = {
   },
   missing: {
     title: 'Missing',
-    template: 'main',
+    template: 'basic',
     body: [
       {
         type: 'p',
