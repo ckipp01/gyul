@@ -20,7 +20,7 @@ const LOGS =
     ]
   },
   {
-    'date': '2018-01-02',
+    'date': '2019-05-12',
     'category': 'research',
     'time': 45,
     'notes': 'researched more node cli stuff and old english names for project names',
@@ -28,9 +28,9 @@ const LOGS =
     'project': 'gyul'
   },
   {
-    'date': '2018-01-03',
+    'date': '2019-05-13',
     'category': 'code',
-    'time': 105,
+    'time': 35,
     'notes': 'developed ándaga',
     'location': 'Spyhouse',
     'project': 'gyul',

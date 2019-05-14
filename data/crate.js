@@ -1,5 +1,5 @@
 'use strict'
-/* global LOGS, createProjects */
+/* global LOGS, createProjects, createAllKeys, createActivityGraph */
 
 const CRATE = {
   gyul: {
@@ -87,6 +87,17 @@ const CRATE = {
       {
         type: 'p',
         text: `This is a small experiment to create a minimal wiki engine that integrates with my timetracker, ándaga.`
+      },
+      {
+        type: 'div',
+        attributes: [
+          { type: 'class', value: 'keys-container' }
+        ],
+        text: createAllKeys(LOGS)
+      },
+      {
+        type: 'div',
+        text: createActivityGraph(LOGS)
       },
       {
         type: 'div',
