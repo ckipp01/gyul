@@ -56,7 +56,7 @@ const Gyul = () => {
       const categories = Object.keys(packagedCrate[key].groupedLogs).sort()
 
       const groupByLogType = (groupedLogs, log) => {
-        groupedLogs[log.category] = groupedLogs[log.category] || Object.create(null)
+        groupedLogs[log.category] = groupedLogs[log.category] || {}
         groupedLogs[log.category].time = groupedLogs[log.category].time || 0
         groupedLogs[log.category].time += log.time
         return groupedLogs
@@ -64,7 +64,7 @@ const Gyul = () => {
 
       const createGroupedLogs = category => {
         const groupedLogs = packagedCrate[key].groupedLogs[category]
-          .reduce(groupByLogType, Object.create(null))
+          .reduce(groupByLogType, {}) 
         groupedLogs[category].totalLogs = packagedCrate[key].groupedLogs[category].length
         groupedLogs[category].percentage = Math.round((groupedLogs[category].time / projectTotal) * 100)
         return groupedLogs
@@ -149,7 +149,7 @@ const Gyul = () => {
         .sort()
       missingProjects.length === 0
         ? console.info('No missing project entries in CRATE')
-        : console.info(`Missing following project entris in CRATE: ${missingProjects.toString()}`)
+        : console.info(`Missing following project entries in CRATE: ${missingProjects.toString()}`)
       const missingTags = LOGS
         .map(log => log.tags)
         .reduce((flattenedTags, tags) => flattenedTags.concat(tags), [])
@@ -159,7 +159,7 @@ const Gyul = () => {
         .sort()
       missingTags.length === 0
         ? console.info('No missing tag entries in CRATE')
-        : console.info(`Missing following tag entris in CRATE: ${missingTags.toString()}`)
+        : console.info(`Missing following tag entries in CRATE: ${missingTags.toString()}`)
     }
   }
 }
