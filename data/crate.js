@@ -61,7 +61,6 @@ const CRATE = {
             text: `GYUL<br>
                     package: rawKey => { iterates throw data using the template and renders the dom }<br>
                     showInfo: rawKey => { changes the main element on the page to show the main info of the current key's data }<br>
-                    showLogs: rawKey => { changes the main element on the page to show the logs of the current key's type }<br>
                     showStats: rawKey => { changes the main element on the page to show the stats and breakdown of the time spent on the key's entries }<br>
                     showTags: rawKey => { changes the main element on the page to show the related tags to the key }<br>
                     switchHeader: rawKey => { changes the header element on the page to match the header element found in the key's template }<br>

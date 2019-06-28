@@ -69,14 +69,6 @@ const TEMPLATES = {
               ]
             },
             { type: 'h5',
-              text: 'logs',
-              attributes: [
-                { type: 'class', value: 'tabs' },
-                { type: 'id', value: 'logs' },
-                { type: 'onclick', value: 'GYUL.showLogs(window.location.hash)' }
-              ]
-            },
-            { type: 'h5',
               text: 'tags',
               attributes: [
                 { type: 'class', value: 'tabs' },
