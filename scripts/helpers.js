@@ -14,7 +14,7 @@ const createProjectObject = (acc, cur) => {
 const createProjects = logs => {
   const logsObject = logs
     .filter(log => log.project !== undefined)
-    .reduce(createProjectObject, {}) 
+    .reduce(createProjectObject, {})
   const projects = Object.keys(logsObject)
   return projects
     .map(p => {
@@ -22,7 +22,7 @@ const createProjects = logs => {
       return `<div>
                 <p><a href='#${p}'>${p}</a><br>
                 ${logsObject[p].time} minutes<br>
-                ${logsObject[p].entries} ${plurality} 
+                ${logsObject[p].entries} ${plurality}
                </div>`
     })
 }
@@ -110,7 +110,7 @@ const createProjectRect = highestMark => (rects, project) => {
 const createDayGraph = highestMark => (days, day) => {
   const rects = day
     ? day.reduce(createProjectRect(highestMark), [])
-    : [[`<rect rx="2" width="90%" height="1px"></rect>`]]
+    : [['<rect rx="2" width="90%" height="1px"></rect>']]
 
   return `${days}<svg>${rects.map(rect => rect[0]).toString().replace(/,/g, '')}</svg>`
 }
